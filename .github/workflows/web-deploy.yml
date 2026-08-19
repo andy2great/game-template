@@ -31,6 +31,9 @@ jobs:
       - run: npm run build
         env:
           PAGES_BASE: /${{ github.event.repository.name }}/
+      - name: Include docs (concept + mockups) in the site
+        run: |
+          if [ -d docs ]; then cp -r docs dist/docs; fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
